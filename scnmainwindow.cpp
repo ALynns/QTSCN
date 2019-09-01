@@ -12,9 +12,9 @@ SCNMainWindow::SCNMainWindow(QWidget *parent) :
 	QMenuBar *pMenuBar = menuBar();
 
 	//工具栏创建
-	menuBarHelp = new QMenu("帮助(Alt+&H)");
+    menuBarHelp = new QMenu(QStringLiteral("帮助(Alt+&H)"));
 	//工具栏菜单创建
-	actionHelpOpen = new QAction("关于软件", this);
+    actionHelpOpen = new QAction(QStringLiteral("关于软件"), this);
 	actionHelpOpen->setShortcut(Qt::CTRL | Qt::Key_A);
 	menuBarHelp->addAction(actionHelpOpen);
 	//将菜单添加至工具栏按钮
@@ -95,7 +95,7 @@ int vexCompare(Vertex v0,Vertex v1)
 
 bool comp(const Vertex v0,const Vertex v1)
 {
-    return v0.i<v1.i;
+    return v0.i>v1.i;
 }
 
 void SCNMainWindow::mayKnowButton_clicked()
@@ -118,14 +118,14 @@ void SCNMainWindow::mayKnowButton_clicked()
     sort(mayKnow.begin(),mayKnow.end(),comp);
 
     QString m;
-    m=QString::fromLocal8Bit("可能认识的人")+'\n';
+    m=name+QStringLiteral("可能认识的人")+'\n';
     for(int i=0;i<mayKnow.size();i++)
     {
-		m = m + mayKnow[i].info + "   " + QString::fromLocal8Bit("关联度：") + QString::number(mayKnow[i].i) + '\n';
+        m = m + mayKnow[i].info + "   " + QStringLiteral("关联度：") + QString::number(mayKnow[i].i) + '\n';
     }
 
     QMessageBox *messageBox;
-    messageBox = new QMessageBox("可能认识的人", m, QMessageBox::Information, QMessageBox::Ok, 0, 0);
+    messageBox = new QMessageBox(QStringLiteral("可能认识的人"), m, QMessageBox::Information, QMessageBox::Ok, 0, 0);
     messageBox->exec();
 }
 
@@ -133,7 +133,9 @@ void SCNMainWindow::mayKnowButton_clicked()
 void SCNMainWindow::actionHelpButton_clicked()
 {
 	QMessageBox *helpMessageBox;
-	QString helpString = "同济大学计算机系2019年课程设计 作者：夏子寒 学号：1753935";
+    QString helpString = QStringLiteral("同济大学计算机系2019年课程设计\n作者：夏子寒\n学号：1753935");
 	helpMessageBox = new QMessageBox("About", helpString, QMessageBox::Information, QMessageBox::Ok, 0, 0);
 	helpMessageBox->exec();
 }
+//a;b;c;d;e
+//b c;a d e;a d;b c;c
